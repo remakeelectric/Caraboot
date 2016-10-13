@@ -5,11 +5,13 @@ export UBOOTDIR=$(TOPDIR)/u-boot
 
 ### Toolchain config ###
 #buildroot
-CONFIG_TOOLCHAIN_PREFIX=/opt/build/toolchain-mipsbe-4.7.3/bin/mips-linux-
+#CONFIG_TOOLCHAIN_PREFIX=/opt/build/toolchain-mipsbe-4.7.3/bin/mips-linux-
 
 #openwrt NOT YET
-#CONFIG_TOOLCHAIN_PREFIX=mips-openwrt-linux-uclibc-
-#export PATH:=$(BUILD_TOPDIR)/toolchain/bin/:$(PATH)
+CONFIG_TOOLCHAIN_PREFIX=mips-openwrt-linux-
+# lede fail
+#export PATH:=/home/karlp/src/lede-source/staging_dir/toolchain-mips_24kc_gcc-5.4.0_musl-1.1.15/bin:$(PATH)
+export PATH:=/home/karlp/src/smartgate_firmware/openwrt-cc/staging_dir/toolchain-mips_34kc_gcc-4.8-linaro_uClibc-0.9.33.2/bin:$(PATH)
 
 ########################
 
