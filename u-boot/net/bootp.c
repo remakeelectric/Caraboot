@@ -8,7 +8,7 @@
  *	Copyright 2000-2004 Wolfgang Denk, wd@denx.de
  */
 
-#if 1
+#if 0
 #define DEBUG		1	/* general debug */
 #define DEBUG_BOOTP_EXT 1	/* Debug received vendor fields */
 #endif
