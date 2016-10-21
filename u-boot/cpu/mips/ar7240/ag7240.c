@@ -507,7 +507,7 @@ int ag7240_enet_initialize(bd_t * bis)
     u32 mask, mac_h, mac_l;
     int i;
 
-    debug("ag7240_enet_initialize...\n");
+    printf("ag7240_enet_initialize...\n");
 
     if(is_ar933x() ) {
         u32 rd = 0x0;
@@ -526,6 +526,7 @@ int ag7240_enet_initialize(bd_t * bis)
     }
 
     for (i = 0;i < CFG_AG7240_NMACS;i++) {
+	printf("Prepping dev:%d\n", i);
 
     if ((dev[i] = (struct eth_device *) malloc(sizeof (struct eth_device))) == NULL) {
         puts("malloc failed\n");
@@ -555,6 +556,7 @@ int ag7240_enet_initialize(bd_t * bis)
     dev[i]->priv = (void *)ag7240_macs[i];
     }
     for (i = 0;i < CFG_AG7240_NMACS;i++) {
+	printf("registering dev:%d\n", i);
         eth_register(dev[i]);
 #if(CONFIG_COMMANDS & CFG_CMD_MII)
         miiphy_register(dev[i]->name, ag7240_miiphy_read, ag7240_miiphy_write);
@@ -585,6 +587,7 @@ int ag7240_enet_initialize(bd_t * bis)
                udelay(10 * 1000);
         }
 
+	printf("hw_start for dev:%d\n", i);
         ag7240_hw_start(ag7240_macs[i]);
         ag7240_setup_fifos(ag7240_macs[i]);
 
@@ -638,8 +641,9 @@ int ag7240_enet_initialize(bd_t * bis)
 #endif
         }
 
+	printf("phy_setup for %d\n", i);
         ag7240_phy_setup(ag7240_macs[i]->mac_unit);
-        debug("%s up\n",dev[i]->name);
+        printf("%s up\n",dev[i]->name);
     }
 
     return 1;
